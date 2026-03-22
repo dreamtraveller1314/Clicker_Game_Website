@@ -99,8 +99,11 @@ function buyItem(itemName) {
         count.textContent = totalClickCount;
         }
 
+        if (item.name !== "Sugar") {
         item.cost = item.startingCost * (amount + 1);
         createShopItems();
+        }
+        
         alert(`Bought ${itemName}!`);
         updateItemsOwned();
         updatePerClick();
