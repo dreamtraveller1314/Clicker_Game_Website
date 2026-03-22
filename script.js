@@ -79,7 +79,7 @@ function createShopItems() {
             <p>${item.description}</p>
         </div>
         <button onclick="buyItem('${item.name}')">
-            Buy $${item.cost}
+            ${item.cost} cupcakes
         </button>
         `;
         shopContainer.appendChild(shopItem);
@@ -109,7 +109,7 @@ function buyItem(itemName) {
         }
 
         if (item.name !== "Sugar") {
-        item.cost = item.startingCost * (amount + 1);
+        item.cost = item.startingCost * ((amount + 1)**3);
         createShopItems();
         }
 
@@ -154,6 +154,7 @@ const milestones = [
     { label: "Baker", target: 500 },
     { label: "Master Baker", target: 1000 },
     { label: "Cupcake Legend", target: 10000 },
+    { label: "Cupcake Deity", target: 1000000 }
 ];
 
 const reachedMilestones = new Set();

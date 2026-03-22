@@ -37,7 +37,7 @@ function loadLeaderboard() {
 }
 
 function saveScore() {
-  const name = prompt("Enter your baker name:");
+  const name = prompt("Enter baker's name:");
   if (!name || name.trim() === "") return;
 
   fetch(BIN_URL + "/latest", {

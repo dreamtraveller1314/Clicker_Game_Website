@@ -64,7 +64,7 @@ header h1 {
   gap: 20px;
   padding: 24px 20px;
   align-items: start;
-  max-width: 1200px;
+  max-width: 1500px;
   margin: 0 auto;
 }
 
@@ -247,7 +247,7 @@ header h1 {
 
 .milestone-popup {
   position: fixed;
-  bottom: 100px;
+  bottom: 30px;
   left: -360px;
   background: var(--bg-panel);
   color: var(--brown);
@@ -286,15 +286,15 @@ header h1 {
   display: flex;
   align-items: center;
   gap: 8px;
-  padding: 6px 0;
+  padding: 3px 0;
   border-bottom: 1px dashed var(--border);
-  font-size: 13px;
+  font-size: 12px;
 }
 
 .leaderboard-row:last-child { border-bottom: none; }
 
 .lb-rank {
-  font-size: 11px;
+  font-size: 12px;
   color: var(--pink);
   width: 18px;
   flex-shrink: 0;
