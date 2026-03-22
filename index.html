@@ -1,0 +1,36 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Clicker Game</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header>
+      <h1>Clicker Game</h1>
+    </header>
+
+    <main class="game-layout">
+      <aside class="stats-panel">
+        <h2>Your Items</h2>
+        <div id="stats-items">
+        </div>
+      </aside>
+
+      <section class="game-area">
+        <p>Money: $<span id="click-count">0</span></p>
+        <button id="click-button">
+          <img src="images/cat_head.png" alt="Cat head" width="200" />
+        </button>
+      </section>
+
+      <aside class="shop-panel">
+        <h2>Upgrades</h2>
+        <div id="shop-items">
+        </div>
+      </aside>
+    </main>
+
+    <script src="script.js" defer></script>
+</body>
+</html>
