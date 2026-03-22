@@ -1,10 +1,14 @@
 const button = document.getElementById("click-button");
 const count = document.getElementById("click-count");
+const shopContainer = document.getElementById("shop-items");
+let itemsOwned = [];
 let totalClickCount = 0;
 
 function buttonClick() {
-  totalClickCount++;
-
+  console.log("Button was clicked!");
+  const multiplierOwned = itemsOwned.find((i) => i.name === "Multiplier");
+  const multiplierCount = multiplierOwned ? multiplierOwned.amount : 0;
+  totalClickCount = totalClickCount + 1 * 2 ** multiplierCount;
   count.textContent = totalClickCount;
 }
 
@@ -57,53 +61,6 @@ function buyItem(itemName) {
     count.textContent = totalClickCount;
 
     let amount = 1;
-
-    const itemInArray = itemsOwned.find((obj) => obj.name === item.name);
-    if (itemInArray) {
-      itemInArray.amount++;
-      console.log(`Found ${item.name}, added 1!`);
-      amount = itemInArray.amount;
-    } else {
-      itemsOwned.push({ name: item.name, amount: 1 });
-      console.log(`Added ${item.name} to itemsOwned!`);
-    }
-
-    console.log(`Bought ${itemName}!`);
-  } else {
-    console.log(`Not enough clicks! Need ${item.cost}`);
-  }
-}
-
-setInterval(() => {
-  const catOwned = itemsOwned.find((i) => i.name === "Cat");
-  if (catOwned) {
-    for (let i = 0; i < catOwned.amount; i++) {
-      buttonClick();
-    }
-  }
-}, 1000); 
-
-
-
-function buttonClick() {
-  console.log("Button was clicked!");
-
-  const multiplierOwned = itemsOwned.find((i) => i.name === "Multiplier");
-  const multiplierCount = multiplierOwned ? multiplierOwned.amount : 0;
-
-  totalClickCount = totalClickCount + 1 * 2 ** multiplierCount;
-
-  count.textContent = totalClickCount;
-}
-
-function buyItem(itemName) {
-  const item = shopItems.find((i) => i.name === itemName);
-  if (totalClickCount >= item.cost) {
-    totalClickCount -= item.cost;
-    count.textContent = totalClickCount;
-
-    let amount = 1;
-
     const itemInArray = itemsOwned.find((obj) => obj.name === item.name);
     if (itemInArray) {
       itemInArray.amount++;
@@ -115,15 +72,44 @@ function buyItem(itemName) {
     }
 
     item.cost = item.startingCost + item.startingCost * amount ** 2;
-    createShopItems(); 
+    createShopItems();
 
-    console.log(`Bought ${itemName}!`);
+    alert(`Bought ${itemName}!`);
+    updateItemsOwned();
   } else {
-    console.log(`Not enough clicks! Need ${item.cost}`);
+    alert(`Not enough clicks! Need ${item.cost}`);
   }
 }
 
-const shopContainer = document.getElementById("shop-items");
-let itemsOwned = [];
+function updateItemsOwned() {
+  const itemsPanel = document.getElementById("stats-items");
+  itemsPanel.innerHTML = "";
+
+  if (itemsOwned.length === 0) {
+    itemsPanel.innerHTML = "<p>Nothing yet!</p>";
+    return;
+  }
+
+  itemsOwned.forEach((item) => {
+    const row = document.createElement("div");
+    row.className = "owned-row";
+    row.innerHTML = `
+      <span>${item.name}</span>
+      <span>${item.amount}</span>
+    `;
+    itemsPanel.appendChild(row);
+  });
+}
+
+
+setInterval(() => {
+  const catOwned = itemsOwned.find((i) => i.name === "Cat");
+  if (catOwned) {
+    for (let i = 0; i < catOwned.amount; i++) {
+      buttonClick();
+    }
+  }
+}, 1000); 
 
 createShopItems();
+updateItemsOwned();
