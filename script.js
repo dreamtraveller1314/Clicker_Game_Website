@@ -14,14 +14,20 @@ function updatePerClick() {
     countperClick.textContent = perClick;
 }
 
-function buttonClick() {
-    updatePerClick();
-    totalClickCount += parseInt(countperClick.textContent);
-    count.textContent = totalClickCount;
+function buttonClick(type, forauto) {
+    if (type === "auto") {
+        totalClickCount += forauto;
+        count.textContent = totalClickCount;
+    }
+    if (type === "manual") {
+        updatePerClick();
+        totalClickCount += parseInt(countperClick.textContent);
+        count.textContent = totalClickCount;
+    }
 }
 
 button.addEventListener("click", function () {
-    buttonClick();
+    buttonClick("manual",0);
 });
 
 const shopItems = [
@@ -125,7 +131,7 @@ setInterval(() => {
     const flourOwned = itemsOwned.find((i) => i.name === "Flour");
     if (flourOwned) {
         for (let i = 0; i < flourOwned.amount; i++) {
-        buttonClick();
+        buttonClick("auto", 1);
         }
     }
 }, 1000);
