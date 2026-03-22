@@ -15,6 +15,9 @@
         <h2>Your Items</h2>
         <div id="stats-items">
         </div>
+        <br><br>
+        <h2>Leaderboard</h2>
+        <div id="leaderboard-list">Loading</div>
       </aside>
 
       <section class="game-area">
@@ -25,8 +28,10 @@
         </p>
         <p1>Cupcakes per click: <span id="count-per-click">1</span></p1>
         <button id="click-button">
-        <img src="img/oven.png" alt="Oven" width="200" />
+          <img src="img/oven.png" alt="Oven" width="200" />
         </button>
+        <br><br><br><br>
+        <button onclick="saveScore()" id="save-btn">Submit my score</button>
       </section>
 
       <aside class="shop-panel">
@@ -36,5 +41,6 @@
     </main>
 
     <script src="script.js" defer></script>
+    <script src="leaderboard.js" defer></script>
 </body>
 </html>

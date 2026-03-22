@@ -39,8 +39,8 @@ body::before {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  opacity: 0.3;   /* 👈 change this — lower = more faded, higher = stronger */
-  z-index: -1;    /* sits behind everything else */
+  opacity: 0.3;
+  z-index: -1;
 }
 
 header {
@@ -262,3 +262,50 @@ header h1 {
 }
 
 .milestone-popup.slide-in { left: 22px; }
+
+#save-btn {
+  margin-bottom: 50px;
+  background: var(--pink-light);
+  border: 2px solid var(--pink);
+  border-radius: 10px;
+  color: var(--brown);
+  padding: 9px 20px;
+  cursor: pointer;
+  font-family: "Rubik Bubbles", system-ui;
+  font-size: 13px;
+  transition: background 0.15s, transform 0.1s;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#save-btn:hover { background: var(--pink); color: #fff; }
+#save-btn:active { transform: scale(0.95); }
+
+.leaderboard-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 0;
+  border-bottom: 1px dashed var(--border);
+  font-size: 13px;
+}
+
+.leaderboard-row:last-child { border-bottom: none; }
+
+.lb-rank {
+  font-size: 11px;
+  color: var(--pink);
+  width: 18px;
+  flex-shrink: 0;
+}
+
+.lb-name {
+  flex: 1;
+  color: var(--brown);
+}
+
+.lb-score {
+  color: var(--pink);
+  font-size: 12px;
+}
