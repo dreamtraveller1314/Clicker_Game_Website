@@ -35,30 +35,34 @@ button.addEventListener("click", function () {
 const shopItems = [
     {
         name: "Flour",
+        icon: "img/flour.png",
         description: "Flour clicks for you, baking you cupcakes.",
         cost: 10,
         startingCost: 10,
     },
     {
         name: "Strawberry",
+        icon: "img/strawberry.png",
         description: "Strawberry multiplies the value of each click by 2.",
         cost: 50,
         startingCost: 50,
     },
     {
         name: "Chocolate",
+        icon: "img/chocolate.png",
         description: "Chocolate multiplies the value of each click by 4.",
         cost: 85,
         startingCost: 85,
     },
     {
         name: "Sugar",
+        icon: "img/sugar.png",
         description: "Sugar multiplies current cupcakes by 2. <br><strong>Important!</strong> It only multiplies the total cupcakes amount after deducting the cost of the item.",
         cost: 100,
         startingCost: 100,
     },
 ];
-
+ 
 function createShopItems() {
     document.querySelectorAll(".shop-item").forEach((element) => {
         element.remove();
@@ -68,7 +72,10 @@ function createShopItems() {
         shopItem.className = "shop-item";
         shopItem.innerHTML = `
         <div>
-            <h3>${item.name}</h3>
+            <h3>
+              <img src="${item.icon}" alt="${item.name}" onerror="this.style.display='none'" />
+              ${item.name}
+            </h3>
             <p>${item.description}</p>
         </div>
         <button onclick="buyItem('${item.name}')">

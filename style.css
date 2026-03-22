@@ -1,81 +1,264 @@
-#click-button {
-  background: transparent;
-  border: none;
-  cursor: pointer;
+@import url('https://fonts.googleapis.com/css2?family=Rubik+Bubbles&display=swap');
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-#click-button:hover {
-  filter: brightness(0.9);
+:root {
+  --bg:           #fff0f5;
+  --bg-panel:     #fde8ef;
+  --bg-card:      #fff7fa;
+  --pink:         #e8638c;
+  --pink-light:   #f7b8ce;
+  --pink-faint:   rgba(232, 99, 140, 0.1);
+  --beige:        #f5dfc5;
+  --beige-dark:   #e8c9a0;
+  --brown:        #5c2d1e;
+  --brown-mid:    #9a5a3a;
+  --border:       rgba(232, 99, 140, 0.2);
+}
+
+body {
+  background: var(--bg);
+  color: var(--brown);
+  font-family: "Rubik Bubbles", system-ui;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 14px;
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url('img/background.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0.3;   /* 👈 change this — lower = more faded, higher = stronger */
+  z-index: -1;    /* sits behind everything else */
+}
+
+header {
+  text-align: center;
+  padding: 2rem 1rem 1.4rem;
+  border-bottom: 2px dashed var(--pink-light);
+  background: linear-gradient(180deg, #ffe4ef 0%, var(--bg) 100%);
+}
+
+header h1 {
+  font-family: "Rubik Bubbles", system-ui;
+  font-size: 2.2rem;
+  color: var(--pink);
+  letter-spacing: 1px;
+  text-shadow: 2px 2px 0px var(--beige-dark);
 }
 
 .game-layout {
   display: grid;
-  grid-template-columns: 1fr 2fr 1fr;
+  grid-template-columns: 2.5fr 2fr 2.5fr; 
   gap: 20px;
-  padding: 20px;
+  padding: 24px 20px;
   align-items: start;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.stats-panel,
+.shop-panel {
+  background: var(--bg-panel);
+  border: 2px solid var(--pink-light);
+  border-radius: 18px;
+  padding: 18px 16px;
+}
+
+.stats-panel h2,
+.shop-panel h2 {
+  font-family: "Rubik Bubbles", system-ui;
+  font-size: 1rem;
+  color: var(--pink);
+  margin-bottom: 12px;
+  padding-bottom: 10px;
+  border-bottom: 2px dashed var(--pink-light);
+}
+
+.owned-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px 0;
+  font-size: 13px;
+  border-bottom: 1px dashed var(--border);
+  color: var(--brown);
+}
+
+.owned-row:last-child { border-bottom: none; }
+
+.owned-row span:last-child {
+  background: var(--pink-faint);
+  border: 1px solid var(--pink-light);
+  padding: 1px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+  color: var(--pink);
+}
+
+#stats-items p {
+  font-size: 12px;
+  color: var(--brown-mid);
+  font-style: italic;
+  opacity: 0.7;
 }
 
 .game-area {
   text-align: center;
+  padding: 8px 0;
 }
+
+.game-area p {
+  font-size: 25px;
+  color: var(--brown-mid);
+  margin-bottom: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.game-area p1 {
+  font-size: 15px;
+  color: var(--brown-mid);
+  margin-bottom: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.game-area p .cupcake-icon {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+  vertical-align: middle;
+}
+
+.game-area p span#click-count {
+  font-family: "Rubik Bubbles", system-ui;
+  font-size: 30px;
+  color: var(--pink);
+  display: block;
+  line-height: 1.1;
+  margin-top: 2px;
+  text-shadow: 2px 2px 0px var(--beige-dark);
+}
+
+.game-area p span#count-per-click {
+  font-family: "Rubik Bubbles", system-ui;
+  font-size: 1rem;
+  color: var(--pink);
+  display: inline;
+}
+
+#click-button {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  margin-top: 18px;
+  display: inline-block;
+  transition: transform 0.12s ease;
+}
+
+#click-button img {
+  filter: drop-shadow(0 5px 12px rgba(232, 99, 140, 0.25));
+  transition: filter 0.2s ease;
+}
+
+#click-button:hover img {
+  filter: brightness(0.9);
+}
+
+#click-button:active { transform: scale(0.92); }
 
 .shop-item {
   display: grid;
   grid-template-columns: 1fr auto;
   gap: 10px;
   align-items: center;
-  margin-bottom: 10px;
-  padding: 8px;
-  border-radius: 3px;
-  background-color: rgba(255, 255, 255, 0.1);
+  margin-bottom: 8px;
+  padding: 11px 12px;
+  border-radius: 14px;
+  background: var(--bg-card);
+  border: 1.5px solid var(--border);
+  transition: border-color 0.15s, background 0.15s;
+}
+
+.shop-item:hover {
+  border-color: var(--pink);
+  background: #fff3f8;
 }
 
 .shop-item h3 {
-  margin: 0 0 4px 0;
-  font-size: 1em;
+  font-family: "Rubik Bubbles", system-ui;
+  font-size: 0.92rem;
+  color: var(--brown);
+  margin-bottom: 2px;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.shop-item h3 img {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
 }
 
 .shop-item p {
   margin: 0;
-  font-size: 0.7em;
-  opacity: 0.8;
+  font-size: 11px;
+  color: var(--brown-mid);
+  line-height: 1.5;
+  opacity: 0.85;
 }
 
 .shop-item button {
-  background-color: bisque;
-  border: 2px solid rgb(155, 77, 0);
-  border-radius: 4px;
-  color: rgb(92, 46, 0);
-  padding: 8px 12px;
+  background: var(--pink-light);
+  border: 2px solid var(--pink);
+  border-radius: 10px;
+  color: var(--brown);
+  padding: 7px 12px;
   cursor: pointer;
-  font-weight: bold;
+  font-family: "Rubik Bubbles", system-ui;
+  font-size: 12px;
+  white-space: nowrap;
+  transition: background 0.15s, transform 0.1s;
 }
 
-.owned-row {
-  display: flex;
-  justify-content: space-between;
-  padding: 4px 0;
-  font-size: 0.9em;
-  border-bottom: 1px solid rgba(255,255,255,0.1);
+.shop-item button:hover {
+  background: var(--pink);
+  color: #fff;
 }
+
+.shop-item button:active { transform: scale(0.95); }
 
 .milestone-popup {
   position: fixed;
   bottom: 100px;
-  left: -300px;
-  background-color: bisque;
-  color: rgb(92, 46, 0);
-  border: 2px solid rgb(155, 77, 0);
-  border-radius: 8px;
-  padding: 12px 18px;
-  font-weight: bold;
-  font-size: 0.95em;
-  z-index: 999;
-  transition: left 0.4s ease;
-  box-shadow: 2px 2px 8px rgba(0,0,0,0.2);
+  left: -360px;
+  background: var(--bg-panel);
+  color: var(--brown);
+  border: 2px solid var(--pink);
+  border-radius: 14px;
+  padding: 11px 20px;
+  font-family: "Rubik Bubbles", system-ui;
+  font-size: 20px;
+  z-index: 9999;
+  transition: left 0.42s cubic-bezier(0.34, 1.28, 0.64, 1);
+  box-shadow: 0 4px 18px rgba(255, 238, 0, 0.526);
 }
 
-.milestone-popup.slide-in {
-  left: 20px;
-}
+.milestone-popup.slide-in { left: 22px; }
