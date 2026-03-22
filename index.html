@@ -11,26 +11,24 @@
     </header>
 
     <main class="game-layout">
+      <aside class="stats-panel">
+        <h2>Your Items</h2>
+        <div id="stats-items">
+        </div>
+      </aside>
 
-        <aside class="stats-panel">
-            <h2>Your Items</h2>
-            <div id="stats-items">
-            </div>
-        </aside>
+      <section class="game-area">
+        <p>Cupcake: $<span id="click-count">0</span></p>
+        <p>Cupcakes per click: <span id="count-per-click">1</span></p>
+        <button id="click-button">
+        <img src="img/oven.png" alt="Oven" width="200" />
+        </button>
+      </section>
 
-        <section class="game-area">
-            <p>Cookies: $<span id="click-count">0</span></p>
-            <p>Cookies per click:<span id="count-per-click">1</span></p>
-            <button id="click-button">
-            <img src="img/oven.png" alt="Oven" width="200" />
-            </button>
-        </section>
-
-        <aside class="shop-panel">
-            <h2>Upgrades</h2>
-            <div id="shop-items">
-            </div>
-        </aside>
+      <aside class="shop-panel">
+        <h2>Upgrades</h2>
+        <div id="shop-items"></div>
+      </aside>
     </main>
 
     <script src="script.js" defer></script>

@@ -12,6 +12,7 @@ function updatePerClick() {
     const multiplierChocolateAmount = multiplierChocolate ? multiplierChocolate.amount : 0;
     const perClick = 1 * (2 ** multiplierStrawberryAmount) * (4 ** multiplierChocolateAmount);
     countperClick.textContent = perClick;
+    updateMilestones();
 }
 
 function buttonClick(type, forauto) {
@@ -24,6 +25,7 @@ function buttonClick(type, forauto) {
         totalClickCount += parseInt(countperClick.textContent);
         count.textContent = totalClickCount;
     }
+    updateMilestones();
 }
 
 button.addEventListener("click", function () {
@@ -33,7 +35,7 @@ button.addEventListener("click", function () {
 const shopItems = [
     {
         name: "Flour",
-        description: "Flour clicks for you, baking you cookies.",
+        description: "Flour clicks for you, baking you cupcakes.",
         cost: 10,
         startingCost: 10,
     },
@@ -51,7 +53,7 @@ const shopItems = [
     },
     {
         name: "Sugar",
-        description: "Sugar multiplies current cookies by 2. <br><strong>Important!</strong> It only multiplies the total cookies amount after deducting the cost of the item.",
+        description: "Sugar multiplies current cupcakes by 2. <br><strong>Important!</strong> It only multiplies the total cupcakes amount after deducting the cost of the item.",
         cost: 100,
         startingCost: 100,
     },
@@ -139,6 +141,40 @@ setInterval(() => {
     }
 }, 1000);
 
+const milestones = [
+    { label: "First Bite", target: 10 },
+    { label: "Cupcake Lover", target: 100 },
+    { label: "Baker", target: 500 },
+    { label: "Master Baker", target: 1000 },
+    { label: "Cupcake Legend", target: 10000 },
+];
+
+const reachedMilestones = new Set();
+
+function updateMilestones() {
+    milestones.forEach((milestone) => {
+        const done = totalClickCount >= milestone.target;
+
+        if (done && !reachedMilestones.has(milestone.target)) {
+        reachedMilestones.add(milestone.target);
+        showMilestonePopup(milestone.label);
+        }
+    });
+}
+
+function showMilestonePopup(label) {
+  const popup = document.createElement("div");
+  popup.className = "milestone-popup";
+  popup.textContent = `Milestone reached: ${label}!`;
+  document.body.appendChild(popup);
+  setTimeout(() => popup.classList.add("slide-in"), 10);
+    setTimeout(() => {
+        popup.style.left = "-300px";
+        setTimeout(() => popup.remove(), 400);
+    }, 2000);
+}
+
 createShopItems();
 updateItemsOwned();
 updatePerClick();
+updateMilestones();
