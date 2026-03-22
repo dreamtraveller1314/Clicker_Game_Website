@@ -18,14 +18,14 @@ button.addEventListener("click", function () {
 
 const shopItems = [
   {
-    name: "Cat",
-    description: "Cats click for you, earning you money.",
+    name: "Flour",
+    description: "Flour click for you, earning you money.",
     cost: 10,
     startingCost: 10,
   },
   {
-    name: "Multiplier",
-    description: "Multiplies the value of each click by 2.",
+    name: "Strawberry",
+    description: "Strawberry multiplies the value of each click by 2.",
     cost: 50,
     startingCost: 50,
   },
@@ -103,9 +103,9 @@ function updateItemsOwned() {
 
 
 setInterval(() => {
-  const catOwned = itemsOwned.find((i) => i.name === "Cat");
-  if (catOwned) {
-    for (let i = 0; i < catOwned.amount; i++) {
+  const playerOwned = itemsOwned.find((i) => i.name === "Flour");
+  if (playerOwned) {
+    for (let i = 0; i < playerOwned.amount; i++) {
       buttonClick();
     }
   }
