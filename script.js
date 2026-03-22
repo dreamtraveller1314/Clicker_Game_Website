@@ -51,7 +51,7 @@ const shopItems = [
     },
     {
         name: "Sugar",
-        description: "Sugar multiplies current cookies by 2.",
+        description: "Sugar multiplies current cookies by 2. <br><strong>Important!</strong> It only multiplies the total cookies amount after deducting the cost of the item.",
         cost: 100,
         startingCost: 100,
     },
@@ -103,7 +103,7 @@ function buyItem(itemName) {
         item.cost = item.startingCost * (amount + 1);
         createShopItems();
         }
-        
+
         alert(`Bought ${itemName}!`);
         updateItemsOwned();
         updatePerClick();
